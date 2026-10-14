@@ -1,0 +1,130 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fafafa;
+  --foreground: #18181b;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ouverture en douceur des panneaux repliables */
+details[open] > *:not(summary) {
+  animation: fade-in 0.25s ease-out both;
+}
+
+/* Calendrier : cases fines sur mobile */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* --- Motion style Apple : subtil, fluide, ease-out doux --- */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes pop-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.98) translateY(6px);
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+.animate-pop {
+  animation: pop 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-out {
+  animation: fade-out 0.16s ease-in both;
+}
+
+.animate-pop-out {
+  animation: pop-out 0.16s ease-in both;
+}
+
+.animate-bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: bar-grow 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  details[open] > *:not(summary) {
+    animation: none;
+  }
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-pop,
+  .animate-fade-out,
+  .animate-pop-out,
+  .animate-bar {
+    animation: none;
+  }
+}
